@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository = new ProductRepository();
 
     @Override
-    public List<ViewProductCustomModel> getAllProducts() {
+    public List<ViewProductCustomModel> getAll() {
         return productRepository.getAll();
     }
 

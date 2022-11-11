@@ -37,7 +37,7 @@ public class ViewProduct extends javax.swing.JFrame {
         dtm = new DefaultTableModel();
         dcbm = new DefaultComboBoxModel();
         categorys = categoryService.getAll();
-        productReponses = productService.getAllProducts();
+        productReponses = productService.getAll();
         jComboBox1.setModel(dcbm);
         jTable1.setModel(dtm);
         String[] headers = {"Product ID", "Category Name", "Product Name", "Price"};
@@ -152,10 +152,8 @@ public class ViewProduct extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewProduct().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ViewProduct().setVisible(true);
         });
     }
 

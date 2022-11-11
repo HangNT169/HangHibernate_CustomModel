@@ -1,0 +1,1 @@
+# HangHibernate_CustomModel

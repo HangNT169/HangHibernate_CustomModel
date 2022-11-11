@@ -4,9 +4,12 @@
  */
 package com.fpt.poly.hangnt.view;
 
+import com.fpt.poly.hangnt.custommodel.ViewProductCustomModel;
 import com.fpt.poly.hangnt.domainmodel.Category;
 import com.fpt.poly.hangnt.service.CategoryService;
+import com.fpt.poly.hangnt.service.ProductService;
 import com.fpt.poly.hangnt.service.impl.CategoryServiceImpl;
+import com.fpt.poly.hangnt.service.impl.ProductServiceImpl;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -18,25 +21,34 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewProduct extends javax.swing.JFrame {
 
+    private ProductService productService;
     private CategoryService categoryService;
     private DefaultTableModel dtm;
     private DefaultComboBoxModel dcbm;
     private List<Category> categorys;
+    private List<ViewProductCustomModel> productReponses;
 
     /**
      * Creates new form ViewProduct
      */
     public ViewProduct() {
-        initComponents();
+        productService = new ProductServiceImpl();
         categoryService = new CategoryServiceImpl();
         dtm = new DefaultTableModel();
         dcbm = new DefaultComboBoxModel();
         categorys = categoryService.getAll();
+        productReponses = productService.getAllProducts();
         jComboBox1.setModel(dcbm);
         jTable1.setModel(dtm);
-        String[] headers = {"Product ID", "Product Code", "Category Code", "Product Name", "Category Name", "Price", "Description"};
+        String[] headers = {"Product ID", "Category Name", "Product Name", "Price"};
         dtm.setColumnIdentifiers(headers);
+        showDataTable(productReponses);
         showCombobox(categorys);
+    }
+
+    private void showDataTable(List<ViewProductCustomModel> lists) {
+        dtm.setRowCount(0);
+        lists.forEach(s -> dtm.addRow(s.toDataRow()));
     }
 
     private void showCombobox(List<Category> lists) {

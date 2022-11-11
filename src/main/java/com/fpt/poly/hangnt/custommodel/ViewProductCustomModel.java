@@ -20,11 +20,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ViewProductCustomModel {
-    
+
     private Long id;
     private String categoryName;
     private String productName;
-    private double productPrice;
-    private int quantity;
-    
+    private float price;
+
+    public Object[] toDataRow() {
+        return new Object[]{id, categoryName, productName, price};
+    }
 }

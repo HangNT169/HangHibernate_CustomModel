@@ -87,8 +87,8 @@ public class CategoryRepository {
         return null;
     }
 
-    public static void main(String[] args) {
-        new CategoryRepository().getAll().forEach(s -> System.out.println(s.toString()));
-        System.out.println(new CategoryRepository().getOne(1L).toString());
-    }
+//    public static void main(String[] args) {
+//        new CategoryRepository().getAll().forEach(s -> System.out.println(s.toString()));
+//        System.out.println(new CategoryRepository().getOne(1L).toString());
+//    }
 }
